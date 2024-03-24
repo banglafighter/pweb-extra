@@ -1,0 +1,8 @@
+
+
+
+
+
+== Library Note
+* *socket.emit :* Its allows you to emit custom events on the server and client.
+* *socket.send :* Its sends messages which are received with the 'message' event.
