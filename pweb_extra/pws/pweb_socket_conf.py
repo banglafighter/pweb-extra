@@ -10,3 +10,9 @@ class PwebSocketConf(ABC):
 
     def on_slash_error(self, errors):
         pass
+
+    def on_connect(self):
+        pass
+
+    def on_disconnect(self):
+        pass
