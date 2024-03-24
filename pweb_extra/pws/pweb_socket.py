@@ -9,7 +9,13 @@ class PWebSocket:
 
     @staticmethod
     def register(pweb_app, config: PwebSocketConf = None):
-        PWebSocket.web_socket = SocketIO(app=pweb_app)
+        if not config:
+            config = PwebSocketConf()
+        PWebSocket.web_socket = SocketIO(
+            app=pweb_app,
+            path=config.register_end_point,
+            cors_allowed_origins=config.cors_allowed_origins
+        )
         PWebSocket().__init_configuration(PWebSocket.web_socket, config=config)
         Console.info("Registered PWebSocket", system_log=True)
 
@@ -33,3 +39,8 @@ class PWebSocket:
 
     def register_error(self, exception_handlers):
         pass
+
+    @staticmethod
+    def notify(event: str, message, feedback_func=None):
+        if PWebSocket.web_socket:
+            PWebSocket.web_socket.emit(event, message)
