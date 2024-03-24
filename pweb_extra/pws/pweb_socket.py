@@ -41,9 +41,17 @@ class PWebSocket:
         pass
 
     @staticmethod
-    def notify(event: str, send_data, feedback_func=None):
+    def notify(event: str, send_data, feedback_func=None, namespace=None, broadcast=False):
         if PWebSocket.web_socket:
             kwargs = {}
+
             if feedback_func:
                 kwargs["callback"] = feedback_func
+
+            if namespace:
+                kwargs["namespace"] = namespace
+
+            if broadcast:
+                kwargs["broadcast"] = broadcast
+
             PWebSocket.web_socket.emit(event, send_data, **kwargs)
