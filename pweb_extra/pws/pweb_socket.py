@@ -41,6 +41,9 @@ class PWebSocket:
         pass
 
     @staticmethod
-    def notify(event: str, message, feedback_func=None):
+    def notify(event: str, send_data, feedback_func=None):
         if PWebSocket.web_socket:
-            PWebSocket.web_socket.emit(event, message)
+            kwargs = {}
+            if feedback_func:
+                kwargs["callback"] = feedback_func
+            PWebSocket.web_socket.emit(event, send_data, **kwargs)
