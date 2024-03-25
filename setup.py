@@ -14,12 +14,12 @@ def get_dependencies():
     if env and env == "dev":
         return dependency
 
-    return dependency + []
+    return dependency + ["ppy-common", "ppy-file-text"]
 
 
 setup(
     name='pweb-extra',
-    version='0.0.1',
+    version='1.0.0',
     url='https://github.com/banglafighter/pweb-extra',
     license='Apache 2.0',
     author='Problem Fighter',
