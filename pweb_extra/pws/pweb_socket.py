@@ -1,4 +1,5 @@
-from flask_socketio import SocketIO
+from flask import copy_current_request_context
+from flask_socketio import SocketIO, disconnect
 from ppy_common import Console
 from pweb_extra.pws.pweb_socket_conf import PwebSocketConf
 
@@ -30,6 +31,7 @@ class PWebSocket:
         # Register Event
         web_socket.on_event("connect", self.on_connect)
         web_socket.on_event("disconnect", self.on_disconnect)
+        web_socket.on_event("disconnect_me", self.disconnect_me)
 
     def on_unhandled_error(self, errors):
         Console.error(f"PWebSocket Unhandled Errors: {errors}")
@@ -51,6 +53,13 @@ class PWebSocket:
     def on_disconnect(self):
         if self.config and self.config.on_disconnect:
             self.config.on_disconnect()
+
+    def disconnect_me(self):
+        @copy_current_request_context
+        def can_disconnect():
+            disconnect()
+
+        can_disconnect()
 
     @staticmethod
     def notify(event: str, send_str_dict, feedback_func=None, namespace=None, broadcast=False):

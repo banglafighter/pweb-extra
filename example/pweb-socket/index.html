@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PWebSocket Example</title>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/socket.io.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        jQuery(document).ready(function () {
+            var socket = io.connect('http://localhost:1212', {
+                'path': '/pweb-socket'
+            });
+
+            socket.on('connect', function () {
+                jQuery('#connection').text("Connected");
+            });
+
+            socket.on('disconnect', function () {
+                jQuery('#connection').text("Disconnected");
+            });
+
+
+            socket.on('notification', function (message, callback) {
+                if (typeof message === "object") {
+                    message = JSON.stringify(message);
+                }
+                console.log(message)
+                jQuery('#notification').append('<br>' + message + '<br>');
+                if (callback) {
+                    callback();
+                }
+            });
+
+            jQuery("#disconnect").click(function () {
+                socket.emit("disconnect_me")
+            })
+
+            window.setInterval(function () {
+                jQuery('#transport').text(socket.io.engine.transport.name);
+            }, 1000);
+        })
+    </script>
+</head>
+<body>
+    <h1>PWebSocket Example Test</h1>
+    <p>
+        Connection Status : <b><span id="connection"></span></b><br>
+        Current transport is: <b><span id="transport"></span></b><br>
+        <b>Notification</b>: <span id="notification"></span><br>
+        <br><button type="button" id="disconnect">Disconnect Me</button><br>
+    </p>
+</body>
+</html>
