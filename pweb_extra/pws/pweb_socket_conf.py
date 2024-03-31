@@ -3,7 +3,7 @@ from abc import ABC
 
 class PwebSocketConf(ABC):
     register_end_point: str = "pweb-socket"
-    cors_allowed_origins: str = '*'
+    cors_allowed_origins: str = None
 
     def on_unhandled_error(self, errors):
         pass
