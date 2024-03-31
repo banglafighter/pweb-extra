@@ -9,7 +9,7 @@ env = os.environ.get('source')
 
 
 def get_dependencies():
-    dependency = ["python-barcode==0.15.1", "Flask-SocketIO==5.3.6"]
+    dependency = ["python-barcode==0.15.1", "Flask-SocketIO==5.3.6", "weasyprint==61.2"]
 
     if env and env == "dev":
         return dependency
