@@ -14,6 +14,7 @@ class PWebPDF:
             css: str = None,
             css_file_path: str = None,
             css_url: str = None,
+            resource_root_path: str = None,
             encoding=None,
             content_zoom: float = 1,
             font_config=FontConfiguration(),
@@ -26,6 +27,7 @@ class PWebPDF:
 
         # Configuring HTML Content
         html_object = HTML(
+            base_url=resource_root_path,
             string=html_content,
             filename=html_file_path,
             url=url,
@@ -39,6 +41,7 @@ class PWebPDF:
         if css_url or css or css_file_path:
             css_font_conf = font_config
             stylesheets = [CSS(
+                base_url=resource_root_path,
                 string=css,
                 filename=css_file_path,
                 url=css_url,
