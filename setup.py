@@ -19,7 +19,7 @@ def get_dependencies():
 
 setup(
     name='pweb-extra',
-    version='1.0.2',
+    version='1.0.3',
     url='https://github.com/banglafighter/pweb-extra',
     license='Apache 2.0',
     author='Problem Fighter',

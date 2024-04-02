@@ -1,5 +1,4 @@
 from weasyprint import HTML, CSS
-from weasyprint.text.fonts import FontConfiguration
 from ppy_common import PPyCException
 
 
@@ -17,7 +16,7 @@ class PWebPDF:
             resource_root_path: str = None,
             encoding=None,
             content_zoom: float = 1,
-            font_config=FontConfiguration(),
+            # font_config=FontConfiguration(),
             embed_css=False,
             media_type='print'):
 
@@ -39,7 +38,7 @@ class PWebPDF:
         stylesheets = None
         css_font_conf = None
         if css_url or css or css_file_path:
-            css_font_conf = font_config
+            # css_font_conf = font_config
             stylesheets = [CSS(
                 base_url=resource_root_path,
                 string=css,
@@ -50,7 +49,8 @@ class PWebPDF:
                 encoding=encoding
             )]
         elif embed_css:
-            css_font_conf = font_config
+            # css_font_conf = font_config
+            pass
 
         # Generation PDF
         response = html_object.write_pdf(
