@@ -9,7 +9,7 @@ env = os.environ.get('source')
 
 
 def get_dependencies():
-    dependency = ["python-barcode==0.15.1", "Flask-SocketIO==5.3.6", "weasyprint==61.2"]
+    dependency = ["python-barcode==0.15.1", "Flask-SocketIO==5.3.6", "weasyprint==52.5"]
 
     if env and env == "dev":
         return dependency
@@ -19,7 +19,7 @@ def get_dependencies():
 
 setup(
     name='pweb-extra',
-    version='1.0.1',
+    version='1.0.2',
     url='https://github.com/banglafighter/pweb-extra',
     license='Apache 2.0',
     author='Problem Fighter',
