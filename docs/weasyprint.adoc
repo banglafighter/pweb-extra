@@ -2,3 +2,8 @@
 For Windows Need to Install:
 * https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases
 * https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation
+
+For Linux
+```
+dnf install -y pango
+```
