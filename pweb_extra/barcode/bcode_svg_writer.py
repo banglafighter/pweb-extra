@@ -70,7 +70,6 @@ class BCodeSVGWriter(SVGWriter):
         self._barcode_y = ypos
         super()._create_module(xpos=xpos, ypos=ypos, width=width, color=color)
 
-
     '''
     Overwrite this method due to human text alignment,
     '''
