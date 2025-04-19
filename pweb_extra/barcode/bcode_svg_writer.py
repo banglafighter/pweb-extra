@@ -6,6 +6,7 @@ class BCodeSVGWriter(SVGWriter):
     text_align = "middle"
     margin_top = None
     top_text_distance: float = 0.5
+    write_text: bool = True
 
     _barcode_y = None
     _barcode_start_x = None
@@ -42,7 +43,7 @@ class BCodeSVGWriter(SVGWriter):
 
     def _init(self, code):
         width, height = self.calculate_size(len(code[0]), len(code))
-        if self.top_text:
+        if self.top_text and self.write_text:
             self._top_text_height = pt2mm(self.font_size) + self.top_text_distance
             self.margin_top += self._top_text_height
             height += self._top_text_height
