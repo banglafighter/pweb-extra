@@ -6,6 +6,7 @@ export interface SocketIOWSConf {
     path?: string
     connect?: () => void
     disconnect?: () => void
+    setGetEvent?: (socketIO: SocketIO) => void
 }
 
 export default class SocketIOWS {
@@ -20,6 +21,9 @@ export default class SocketIOWS {
             path: this.getPath()
         })
         this.initCallBack()
+        if (this.config && this.config.setGetEvent) {
+            this.config.setGetEvent(this.socketIO)
+        }
     }
 
     private getUrl() {
