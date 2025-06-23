@@ -15,7 +15,8 @@ class PWebSocket:
         PWebSocket.web_socket = SocketIO(
             app=pweb_app,
             path=config.register_end_point,
-            cors_allowed_origins=config.cors_allowed_origins
+            cors_allowed_origins=config.cors_allowed_origins,
+            message_queue=config.message_queue
         )
         PWebSocket().__init_configuration(PWebSocket.web_socket, config=config)
         Console.info("Registered PWebSocket", system_log=True)
