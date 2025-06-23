@@ -6,6 +6,8 @@ class PwebSocketConf(ABC):
     cors_allowed_origins: str = "*"
     message_queue: str = None
     async_mode: str = None  # eventlet
+    logger: bool = False
+    engineio_logger: bool = False
 
     def on_unhandled_error(self, errors):
         pass
