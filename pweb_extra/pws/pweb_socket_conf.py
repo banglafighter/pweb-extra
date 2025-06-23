@@ -5,7 +5,7 @@ class PwebSocketConf(ABC):
     register_end_point: str = "pweb-socket"
     cors_allowed_origins: str = "*"
     message_queue: str = None
-    async_mode: str = None
+    async_mode: str = None  # eventlet
 
     def on_unhandled_error(self, errors):
         pass
