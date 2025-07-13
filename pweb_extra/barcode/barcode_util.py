@@ -1,6 +1,10 @@
+import base64
 import enum
+from io import BytesIO
+
 import barcode
 from dataclasses import dataclass
+from barcode.writer import ImageWriter
 from bpy_obj.sdlize import SDLize
 from ppy_file_text import FileUtil
 from pweb_extra.barcode.bcode_svg_writer import BCodeSVGWriter
@@ -33,6 +37,15 @@ class BarcodeConfig(SDLize):
 
 
 class BarcodeUtil:
+
+    @staticmethod
+    def get_base64(code: str, code_type: BarcodeType = BarcodeType.CODE128):
+        barcodeGenerator = barcode.get_barcode_class(code_type.value)
+        barcode_data = barcodeGenerator(code, writer=ImageWriter())
+        buffer = BytesIO()
+        barcode_data.write(buffer)
+        # "<img src="data:image/png;base64,{base64_image}" alt="{code}"/>"
+        return base64.b64encode(buffer.getvalue()).decode('utf-8')
 
     @staticmethod
     def generate(code: str, file_path: str, file_name: str = None, config: BarcodeConfig = None, code_type: BarcodeType = BarcodeType.CODE128):
